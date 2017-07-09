@@ -15,7 +15,7 @@ public class Main {
 			
 		}
 		
-		Frame frame = new Frame("Hotkey-master", 100, 100);
+		Frame frame = new Frame("MKey", 100, 100);
 		
 		Execute.Init();
 		HotkeyListener.init();
@@ -23,7 +23,3 @@ public class Main {
 	}
 	
 }
-
-/**
-
-**/

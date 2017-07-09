@@ -1,19 +1,15 @@
 package hotkey;
 
-import org.jnativehook.keyboard.NativeKeyEvent;
-
-import main.HotkeyListener;
-
 public class FrameKlasse extends Hotkey {
 
 	@Override
 	public boolean condition() {
-		return HotkeyListener.keys[NativeKeyEvent.VC_1] && HotkeyListener.keys[NativeKeyEvent.VC_CONTROL];
+		return false;
 	}
 
 	@Override
 	public String hotkeyInputString() {
-		return null;
+		return "java frame";
 	}
 
 	@Override

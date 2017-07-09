@@ -12,7 +12,6 @@ public abstract class Hotkey {
 		list.add(new HelloWorld());
 		list.add(new FrameKlasse());
 		list.add(new UnturnedLoadout1());
-		list.add(new BleuzensHodki());
 		
 		new Thread(new Runnable() {
 			

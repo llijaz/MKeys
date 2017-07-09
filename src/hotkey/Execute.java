@@ -12,11 +12,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-
-import javax.swing.KeyStroke;
-
-import org.jnativehook.keyboard.NativeKeyEvent;
 
 import main.HotkeyListener;
 
@@ -120,7 +115,7 @@ public class Execute {
 	public static void Write(String string) {
 		StringSelection stringSelection = new StringSelection(string);
 		Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-		clipboard.setContents(stringSelection, stringSelection); // TODO: clipboard zurücklsetzen
+		clipboard.setContents(stringSelection, stringSelection); // TODO: reset clipboard
 
 		robot.keyPress(KeyEvent.VK_CONTROL);
 		robot.keyPress(KeyEvent.VK_V);
@@ -134,12 +129,12 @@ public class Execute {
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(new File(path)));
 			
-			String line = reader.readLine();
-
-			while( (line != null) && (!line.isEmpty()) ){
-			    str = str + line + "\n";
-			    line = reader.readLine();
+			String line;
+			while((line = reader.readLine()) != null) {
+				str += line + System.lineSeparator();
 			}
+			
+			reader.close();
 		} catch (FileNotFoundException e) {
 			return "";
 		} catch (IOException e) {

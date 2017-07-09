@@ -16,6 +16,8 @@ public class HelloWorld extends Hotkey {
 
 	@Override
 	public void run(boolean mode) {
+		Execute.WaitLong();
+		
 		if (mode)
 			Execute.LeftClick();
 		
