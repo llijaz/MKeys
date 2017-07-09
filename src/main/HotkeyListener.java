@@ -31,6 +31,8 @@ public class HotkeyListener implements NativeKeyListener, NativeMouseMotionListe
 		int keyCode = nativeEvent.getKeyCode();
 		
 		if (keyCode == INPUTFRAMEKEY) {
+			Execute.WaitLong();
+			
 			InputField inputField = new InputField();
 			
 			String str = inputField.getInput();
