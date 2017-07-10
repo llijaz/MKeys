@@ -3,9 +3,6 @@ package main;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.swing.JDialog;
-import javax.swing.JOptionPane;
-
 import org.jnativehook.GlobalScreen;
 import org.jnativehook.NativeHookException;
 import org.jnativehook.keyboard.NativeKeyEvent;
@@ -16,13 +13,14 @@ import org.jnativehook.mouse.NativeMouseMotionListener;
 import frame.InputField;
 import hotkey.Execute;
 import hotkey.Hotkey;
+import hotkey.Hotkeys;
 
 public class HotkeyListener implements NativeKeyListener, NativeMouseMotionListener {
-	
-	public static final int INPUTFRAMEKEY = NativeKeyEvent.VC_F12;
-	
+
+	public static int inputframekey = NativeKeyEvent.VC_F12;
+
 	public static boolean[] keys = new boolean[250];
-	
+
 	public static int mx;
 	public static int my;
 
@@ -30,15 +28,17 @@ public class HotkeyListener implements NativeKeyListener, NativeMouseMotionListe
 	public void nativeKeyPressed(NativeKeyEvent nativeEvent) {
 		int keyCode = nativeEvent.getKeyCode();
 		
-		if (keyCode == INPUTFRAMEKEY) {
+		// System.out.println(keyCode);
+		
+		if (keyCode == inputframekey) {
 			Execute.WaitLong();
-			
+
 			InputField inputField = new InputField();
-			
+
 			String str = inputField.getInput();
-			
+
 			if (str != null && !str.isEmpty()) {
-				Hotkey.runInput(str);
+				Hotkeys.Input(str);
 			}
 		} else {
 			try {
@@ -47,20 +47,20 @@ public class HotkeyListener implements NativeKeyListener, NativeMouseMotionListe
 			}
 		}
 	}
-	
+
 	@Override
 	public void nativeKeyReleased(NativeKeyEvent nativeEvent) {
 		int keyCode = nativeEvent.getKeyCode();
-		
-		if (keyCode != INPUTFRAMEKEY) {
+
+		if (keyCode != inputframekey) {
 			try {
 				keys[keyCode] = false;
 			} catch (ArrayIndexOutOfBoundsException e) {
-				
+
 			}
 		}
 	}
-	
+
 	@Override
 	public void nativeKeyTyped(NativeKeyEvent nativeEvent) {}
 
@@ -79,7 +79,7 @@ public class HotkeyListener implements NativeKeyListener, NativeMouseMotionListe
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Override
 	public void nativeMouseDragged(NativeMouseEvent arg0) {
 	}

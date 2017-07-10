@@ -2,60 +2,50 @@ package hotkey;
 
 import java.util.ArrayList;
 
-public abstract class Hotkey {
+import main.HotkeyListener;
+import skriptinglan.Command;
+
+public class Hotkey {
 	
-	public static ArrayList<Hotkey> list;
+	public String inputString;
 	
-	public static void Init() {
-		list = new ArrayList<>();
+	public ArrayList<String> condition;
+	public ArrayList<Command> commandList;
+	
+	public Hotkey() {
+		this.condition = new ArrayList<>();
+		this.commandList = new ArrayList<>();
+	}
+	
+	public void update() {
+		boolean b = true;
 		
-		list.add(new HelloWorld());
-		list.add(new FrameKlasse());
-		list.add(new UnturnedLoadout1());
-		
-		new Thread(new Runnable() {
-			
-			@Override
-			public void run() {
-				while (true) {
-					for (int i = 0; i < list.size(); i++) {
-						list.get(i).Update();
+		for (String str : condition) {
+			if (str.startsWith("key:")) {
+				try {
+					int i = Integer.parseInt(str.substring(4, str.length()));
+					if (!HotkeyListener.keys[i]) {
+						b = false;
 					}
-					
-					try {
-						Thread.sleep(1);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
+				} catch  (NumberFormatException e){
+					b = false;
 				}
 			}
-			
-		}).start();
-	}
-	
-	public static void runInput(String input) {
-		for (int i = 0; i < list.size(); i++) {
-			list.get(i).RunAsInputString(input);
+		}
+		
+		if (condition.size() == 0) {
+			b = false;
+		}
+		
+		if (b) {
+			this.execute(false);
 		}
 	}
 	
-	public void Update() {
-		if (this.condition()) {
-			this.run(false);
+	public void execute(boolean mode) {
+		for (Command command : this.commandList) {
+			command.execute(mode);
 		}
 	}
-	
-	public void RunAsInputString(String input) {
-		if (this.hotkeyInputString() != null) {
-			if (input.equals(this.hotkeyInputString())) {
-				this.run(true);
-			}
-		}
-	}
-	
-	public abstract boolean condition();
-	public abstract String hotkeyInputString();
-	
-	public abstract void run(boolean mode);
 	
 }
