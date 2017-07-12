@@ -15,7 +15,11 @@ class Write extends Task {
 	public void execute(ArrayList<Object> parameters, boolean mode) {
 		String s = "";
 		for (Object obj : parameters) {
-			s += String.valueOf(obj);
+			String cs = String.valueOf(obj);
+			
+			if (cs.startsWith("\"")) {
+				s += cs.substring(1);
+			}
 		}
 		
 		Execute.Write(s);

@@ -10,17 +10,25 @@ import tasks.Task;
 public class Compile {
 	
 	public static void compileSkript(final String path) {
+		// Loading the document
+		
 		String skript = Execute.LoadStringFromFile(path);
+		
+		// Compiling the script
 		
 		compile(skript);
 	}
 	
 	public static void compile(final String str) {
+		// Sorts from string to arraylist array.
+		
 		ArrayList<String>[] sorted = getSortedList(str);
 		
 		Hotkey hotkey = new Hotkey();
 		
-		hotkey.inputString = "test";
+		sorted = removeComments(sorted);
+		
+		// printAll(sorted);
 		
 		for (ArrayList<String> list : sorted) {
 			Command command = new Command();
@@ -31,10 +39,16 @@ public class Compile {
 					String s = "";
 					if (list.size() > 1) {
 						for (int i = 1; i < list.size(); i++) {
-							s += list.get(i);
+							if (list.get(i).startsWith("\"")) {
+								s += list.get(i).substring(1);
+							}
 						}
 					}
 					hotkey.inputString = s;
+					break;
+					
+				case "onlyonce":
+					hotkey.onlyonce = true;
 					break;
 					
 				case "req":
@@ -48,6 +62,8 @@ public class Compile {
 								
 								hotkey.condition.add("key:" + cs);
 							}
+							
+							// TODO: remove
 							
 							if (cs.equalsIgnoreCase("#")) {
 								break;
@@ -79,60 +95,109 @@ public class Compile {
 	}
 	
 	@SuppressWarnings("unchecked")
-	private static ArrayList<String>[] getSortedList(final String skript) {
-		ArrayList<String>[] sorted;
+	public static ArrayList<String>[] getSortedList(final String skript) {
+		ArrayList<String>[] output;
+		
+		// Splits the string in every new line
 		
 		String[] linesep = skript.split(System.lineSeparator());
 		
-		sorted = new ArrayList[linesep.length];
+		// Initialize the arraylist array with the length of how many lines there are
+		
+		output = new ArrayList[linesep.length];
+		
+		// Repeat for every line
 		
 		for (int i = 0; i < linesep.length; i++) {
 			
-			sorted[i] = new ArrayList<>();
+			// Initialize the output at line 'i' as an arraylist
 			
-			// pointer
-			int sPointer = -1;
+			output[i] = new ArrayList<>();
+			
+			int pointer = -1;
+			
+			boolean isString = false;
 			
 			for (int j = 0; j < linesep[i].length(); j++) {
 				char ch = linesep[i].charAt(j);
 				
-				if (isAlphabetical(ch)) {
-					
-					/**
-					 * for example if there is a word it will set a pointer called 'sPointer' on the lowest place possible
-					 * if there will be any separator it will substring the whole string from the pointer to the separator
-					 */
-					
-					if (sPointer == -1)
-						sPointer = j;
-				} else {
-					boolean selfadd = false;
-					
-					if (ch != ' ' && sPointer != -1)
-						selfadd = true;
-					
-					if (sPointer != -1) {
-						sorted[i].add(linesep[i].substring(sPointer, j));
-						sPointer = -1;
-					} else {
-						sorted[i].add(String.valueOf(ch));
+				if (isString) {
+					if (ch == '\"') {
+						isString = false;
+						
+						output[i].add(linesep[i].substring(pointer, j));
+						pointer = -1;
 					}
-					
-					if (selfadd)
-						sorted[i].add(String.valueOf(ch));
+				} else {
+					if (isAlphabetical(ch)) {
+						
+						/**
+						 * for example if there is a word it will set a pointer called 'sPointer' on the lowest place possible
+						 * if there will be any separator it will substring the whole string from the pointer to the separator
+						 */
+						
+						if (pointer == -1)
+							pointer = j;
+					} else if (ch == '\"') {
+						isString = true;
+						pointer = j;
+					} else {
+						boolean selfadd = false;
+						
+						if (ch != ' ' && pointer != -1)
+							selfadd = true;
+						
+						if (pointer != -1) {
+							output[i].add(linesep[i].substring(pointer, j));
+							pointer = -1;
+						} else {
+							output[i].add(String.valueOf(ch));
+						}
+						
+						if (selfadd)
+							output[i].add(String.valueOf(ch));
+					}
 				}
 				
 				if (j == linesep[i].length() - 1) {
-					if (sPointer != -1) {
-						sorted[i].add(linesep[i].substring(sPointer, j + 1));
+					if (pointer != -1) {
+						output[i].add(linesep[i].substring(pointer, j + 1));
 					} else if (isAlphabetical(linesep[i].charAt(j))) {
-						sorted[i].add(linesep[i].substring(j, j + 1));
+						output[i].add(linesep[i].substring(j, j + 1));
 					}
 				}
 			}
 		}
 		
+		return output;
+	}
+	
+	private static ArrayList<String>[] removeComments(ArrayList<String>[] sorted) {
+		for (ArrayList<String> list : sorted) {
+			boolean isComment = false;
+			for (int i = 1; i < list.size(); i++) {
+				if (list.get(i).equalsIgnoreCase("#")) {
+					isComment = true;
+				}
+				
+				if (isComment) {
+					list.remove(i);
+					i--;
+				}
+			}
+		}
+		
 		return sorted;
+	}
+	
+	private static void printAll(ArrayList<String>[] sorted) {
+		for (ArrayList<String> list : sorted) {
+			for (int i = 1; i < list.size(); i++) {
+				System.out.print(list.get(i));
+				System.out.print("; ");
+			}
+			System.out.println();
+		}
 	}
 	
 	private static boolean isAlphabetical(char ch) {

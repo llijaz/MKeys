@@ -3,12 +3,13 @@ package frame.menu.file;
 import java.util.ArrayList;
 
 import frame.menu.MenuHandler;
+import main.Main;
 
-public class AddHotkey extends MenuHandler {
+public class Menu0_Refresh extends MenuHandler {
 
 	@Override
 	public String name() {
-		return "Add Hotkey";
+		return "Refresh";
 	}
 
 	@Override
@@ -18,7 +19,7 @@ public class AddHotkey extends MenuHandler {
 
 	@Override
 	public void action() {
-		
+		Main.RefreshHotkeys();
 	}
-	
+
 }

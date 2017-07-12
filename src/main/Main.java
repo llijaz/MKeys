@@ -10,7 +10,9 @@ import skriptinglan.Compile;
 import tasks.Task;
 
 public class Main {
-
+	
+	public static Frame frame;
+	
 	public static void main(String[] args) {
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -18,7 +20,7 @@ public class Main {
 
 		}
 
-		new Frame("MKey", 400, 400);
+		frame = new Frame("MKey", 400, 400);
 		
 		Files.Init();
 		Execute.Init();
@@ -26,9 +28,7 @@ public class Main {
 		Task.Init();
 		Hotkeys.Init();
 		
-		for (String path : Files.paths) {
-			Compile.compileSkript(path);
-		}
+		RefreshHotkeys();
 		
 		String s = Files.getContent("inputframekey");
 		
@@ -40,6 +40,13 @@ public class Main {
 			}
 		}
 		
+	}
+	
+	public static void RefreshHotkeys() {
+		for (String path : Files.paths) {
+			System.out.println("Loaded: " + path);
+			Compile.compileSkript(path);
+		}
 	}
 
 }

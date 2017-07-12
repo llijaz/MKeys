@@ -10,26 +10,6 @@ import javax.swing.JMenuItem;
 
 public abstract class MenuHandler {
 	
-	public static JMenuBar menuBar;
-	
-	public static ArrayList<MenuHandler> list = new ArrayList<>();
-	
-	public static void addMenus() {
-		menuBar = new JMenuBar();
-		
-		for (int i = 0; i < list.size(); i++) {
-			list.get(i).add(menuBar);
-		}
-	}
-	
-	public static void addMenuToList(MenuHandler handler) {
-		list.add(handler);
-	}
-	
-	public static void insertAllMenus() {
-		addMenuToList(new File());
-	}
-	
 	public void add(JMenuBar menu) {
 		add(menu, this);
 	}

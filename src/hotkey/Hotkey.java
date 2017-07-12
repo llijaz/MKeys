@@ -12,6 +12,9 @@ public class Hotkey {
 	public ArrayList<String> condition;
 	public ArrayList<Command> commandList;
 	
+	public boolean onlyonce = false;
+	private boolean hasRun = false;
+	
 	public Hotkey() {
 		this.condition = new ArrayList<>();
 		this.commandList = new ArrayList<>();
@@ -37,8 +40,15 @@ public class Hotkey {
 			b = false;
 		}
 		
-		if (b) {
-			this.execute(false);
+		if (!this.hasRun || !this.onlyonce) {
+			if (b) {
+				this.hasRun = true;
+				this.execute(false);
+			}
+		}
+		
+		if (!b) {
+			this.hasRun = false;
 		}
 	}
 	

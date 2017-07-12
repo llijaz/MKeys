@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import frame.menu.file.*;
 
-class File extends MenuHandler {
+class Menu0_File extends MenuHandler {
 
 	@Override
 	public String name() {
@@ -14,9 +14,10 @@ class File extends MenuHandler {
 	@Override
 	public ArrayList<MenuHandler> getItems() {
 		ArrayList<MenuHandler> list = new ArrayList<>();
-		list.add(new AddHotkey());
+		list.add(new Menu0_AddHotkey());
+		list.add(new Menu0_Refresh());
 		list.add(new Separator());
-		list.add(new Exit());
+		list.add(new Menu0_Exit());
 		return list;
 	}
 

@@ -13,7 +13,10 @@ public abstract class Task {
 		tasks.add(new Wait());
 		tasks.add(new Debug());
 		tasks.add(new KeyType());
+		tasks.add(new KeyPress());
+		tasks.add(new KeyRelease());
 		tasks.add(new Write());
+		tasks.add(new Focus());
 	}
 	
 	public abstract String name();

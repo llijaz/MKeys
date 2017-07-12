@@ -28,8 +28,12 @@ public class Hotkeys {
 	
 	public static void Input(String input) {
 		for (Hotkey hotkey : hotkeys) {
-			if (hotkey.inputString.equalsIgnoreCase(input)) {
-				hotkey.execute(true);
+			try {
+				if (hotkey.inputString.equalsIgnoreCase(input)) {
+					hotkey.execute(true);
+				}
+			} catch (NullPointerException e) {
+				
 			}
 		}
 	}
@@ -39,9 +43,9 @@ public class Hotkeys {
 	}
 	
 	private static void Update() {
-		for (Hotkey hotkey : hotkeys) {
-			if (hotkey != null) {
-				hotkey.update();
+		for (int i = 0; i < hotkeys.size(); i++) {
+			if (hotkeys.get(i) != null) {
+				hotkeys.get(i).update();
 			}
 		}
 	}
