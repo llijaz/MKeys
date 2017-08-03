@@ -1,14 +1,15 @@
-package frame.menu.file;
+package frame.menu.generator;
 
 import java.util.ArrayList;
 
 import frame.menu.MenuHandler;
+import main.Main;
 
-public class Menu0_Refresh extends MenuHandler {
+public class Menu0_Open extends MenuHandler {
 
 	@Override
 	public String name() {
-		return "Refresh";
+		return "Open";
 	}
 
 	@Override
@@ -18,7 +19,7 @@ public class Menu0_Refresh extends MenuHandler {
 
 	@Override
 	public void action() {
-		
+		// Main.frame.OpenGenerator();
 	}
 
 }

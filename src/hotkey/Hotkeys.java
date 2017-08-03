@@ -6,7 +6,7 @@ public class Hotkeys {
 	
 	private static ArrayList<Hotkey> hotkeys;
 	
-	public static void Init() {
+	public static void init() {
 		hotkeys = new ArrayList<>();
 		
 		new Thread(new Runnable() {
@@ -48,6 +48,10 @@ public class Hotkeys {
 				hotkeys.get(i).update();
 			}
 		}
+	}
+
+	public static void clear() {
+		hotkeys = new ArrayList<>();
 	}
 	
 }

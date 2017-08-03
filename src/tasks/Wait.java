@@ -1,6 +1,7 @@
 package tasks;
 
-import static hotkey.Execute.*;
+import static hotkey.Execute.Wait;
+import static hotkey.Execute.WaitLong;
 
 import java.util.ArrayList;
 
@@ -30,6 +31,23 @@ class Wait extends Task {
 		} else {
 			Wait();
 		}
+	}
+	
+	@Override
+	public String[] menuCategory() {
+		return new String[] {
+				"Events"
+		};
+	}
+	
+	@Override
+	public ArrayList<String[]> parameters() {
+		ArrayList<String[]> list = new ArrayList<>();
+		
+		list.add(new String[] {"Long", "#Integer milliseconds"});
+		// list.add(new String[] {});
+		
+		return list;
 	}
 
 }

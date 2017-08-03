@@ -9,21 +9,23 @@ public class Hotkey {
 	
 	public String inputString;
 	
-	public ArrayList<String> condition;
+	public ArrayList<String> conditions;
 	public ArrayList<Command> commandList;
+	
+	public String luaPath;
 	
 	public boolean onlyonce = false;
 	private boolean hasRun = false;
 	
 	public Hotkey() {
-		this.condition = new ArrayList<>();
+		this.conditions = new ArrayList<>();
 		this.commandList = new ArrayList<>();
 	}
 	
 	public void update() {
 		boolean b = true;
 		
-		for (String str : condition) {
+		for (String str : conditions) {
 			if (str.startsWith("key:")) {
 				try {
 					int i = Integer.parseInt(str.substring(4, str.length()));
@@ -36,7 +38,7 @@ public class Hotkey {
 			}
 		}
 		
-		if (condition.size() == 0) {
+		if (conditions.size() == 0) {
 			b = false;
 		}
 		
@@ -53,9 +55,15 @@ public class Hotkey {
 	}
 	
 	public void execute(boolean mode) {
+		/**
 		for (Command command : this.commandList) {
 			command.execute(mode);
 		}
+		
+		for (Instructions instruction: this.instructions) {
+			instruction.execute(mode);
+		}
+		**/
 	}
 	
 }

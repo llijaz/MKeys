@@ -1,6 +1,7 @@
 package main;
 
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -15,12 +16,12 @@ import org.jnativehook.mouse.NativeMouseMotionListener;
 import frame.InputField;
 import generator.Generator;
 import hotkey.Execute;
-import hotkey.Hotkey;
 import hotkey.Hotkeys;
 
+@SuppressWarnings("serial")
 public class HotkeyListener extends AbstractSwingInputAdapter implements NativeKeyListener, NativeMouseMotionListener {
 
-	public static int inputframekey = NativeKeyEvent.VC_F12;
+	public static int inputframekey = KeyEvent.VK_F12;
 
 	public static boolean[] keys = new boolean[250];
 
@@ -29,25 +30,33 @@ public class HotkeyListener extends AbstractSwingInputAdapter implements NativeK
 	
 	public static boolean setInformationToGenerator;
 	public static Generator generator;
-
+	
+	static ArrayList<HotkeyEvents> events = new ArrayList<>();
+	
 	@Override
 	public void nativeKeyPressed(NativeKeyEvent nativeEvent) {
-		int keyCode = nativeEvent.getKeyCode();
+		if (!Main.threading) {
+			return;
+		}
 		
-		// System.out.println(keyCode);
+		int keyCode = getJavaKeyEvent(nativeEvent).getKeyCode();
 		
 		if (setInformationToGenerator && generator != null) {
-			generator.keyPressed(getJavaKeyEvent(nativeEvent).getKeyCode());
+			generator.keyPressed(keyCode);
 		}
 		
 		if (keyCode == inputframekey) {
 			Execute.WaitLong();
 
 			InputField inputField = new InputField();
-
+			
+			//Execute.TypeKey(KeyEvent.VK_WINDOWS);
+			//Execute.MouseClickCenter();
+			
 			String str = inputField.getInput();
 
 			if (str != null && !str.isEmpty()) {
+				Main.executeAllHotkeys(str, true);
 				Hotkeys.Input(str);
 			}
 		} else {
@@ -56,14 +65,30 @@ public class HotkeyListener extends AbstractSwingInputAdapter implements NativeK
 			} catch (ArrayIndexOutOfBoundsException e) {
 			}
 		}
+		
+		Main.executeAllHotkeys("", false);
+		
+		for (HotkeyEvents event : events) {
+			event.keyPressed(keyCode);
+		}
 	}
 
 	@Override
 	public void nativeKeyReleased(NativeKeyEvent nativeEvent) {
-		int keyCode = nativeEvent.getKeyCode();
+		int keyCode = getJavaKeyEvent(nativeEvent).getKeyCode();
+		
+		if (keyCode == KeyEvent.VK_CONTROL && !keys[KeyEvent.VK_CONTROL]) {
+			
+			/**
+			 * Somehow this program is thinking that i'm releasing the control key.
+			 * So no i'm first testing if this key got actually pressed.
+			 */
+			
+			return;
+		}
 		
 		if (setInformationToGenerator && generator != null) {
-			generator.keyReleased(getJavaKeyEvent(nativeEvent).getKeyCode());
+			generator.keyReleased(keyCode);
 		}
 		
 		if (keyCode != inputframekey) {
@@ -72,6 +97,12 @@ public class HotkeyListener extends AbstractSwingInputAdapter implements NativeK
 			} catch (ArrayIndexOutOfBoundsException e) {
 
 			}
+		}
+		
+		Main.executeAllHotkeys("", false);
+		
+		for (HotkeyEvents event : events) {
+			event.keyReleased(keyCode);
 		}
 	}
 
@@ -104,7 +135,11 @@ public class HotkeyListener extends AbstractSwingInputAdapter implements NativeK
 		my = event.getY();
 	}
 	
-	public KeyEvent getJavaKeyEvent(NativeKeyEvent nativeEvent) {
+	public static void GetKeyEvents(HotkeyEvents event) {
+		events.add(event);
+	}
+	
+	KeyEvent getJavaKeyEvent(NativeKeyEvent nativeEvent) {
 		int keyLocation  = KeyEvent.KEY_LOCATION_UNKNOWN;
 		switch (nativeEvent.getKeyLocation()) {
 			case NativeKeyEvent.KEY_LOCATION_STANDARD:

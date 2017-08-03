@@ -2,11 +2,10 @@ package frame.menu;
 
 import java.util.ArrayList;
 
-import frame.menu.generator.Menu0_GetKeyCode;
-import frame.menu.generator.Menu0_Open;
+import frame.menu.generator.Menu1_Write;
 
-class Menu0_Generator extends MenuHandler {
-
+class Menu1_Generator extends MenuHandler {
+	
 	@Override
 	public String name() {
 		return "Generator";
@@ -15,10 +14,7 @@ class Menu0_Generator extends MenuHandler {
 	@Override
 	public ArrayList<MenuHandler> getItems() {
 		ArrayList<MenuHandler> list = new ArrayList<>();
-		
-		list.add(new Menu0_Open());
-		list.add(new Menu0_GetKeyCode());
-		
+		list.add(new Menu1_Write());
 		return list;
 	}
 

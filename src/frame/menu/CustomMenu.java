@@ -33,7 +33,9 @@ public class CustomMenu {
 			break;
 			
 		case 1:
-			cmenu.addMenuToList(new Menu0_File());
+			cmenu.addMenuToList(new Menu1_File());
+			cmenu.addMenuToList(new Menu1_Generator());
+			cmenu.addMenuToList(new Menu1_Tasks());
 			break;
 		}
 	}

@@ -1,15 +1,14 @@
-package frame.menu.generator;
+package frame.menu.file;
 
 import java.util.ArrayList;
 
 import frame.menu.MenuHandler;
-import main.Main;
 
-public class Open extends MenuHandler {
+public class Menu1_Save extends MenuHandler {
 
 	@Override
 	public String name() {
-		return "Open";
+		return "Save";
 	}
 
 	@Override
@@ -19,7 +18,7 @@ public class Open extends MenuHandler {
 
 	@Override
 	public void action() {
-		Main.frame.OpenGenerator();
+		
 	}
-
+	
 }

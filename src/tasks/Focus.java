@@ -17,5 +17,12 @@ class Focus extends Task {
 			Execute.LeftClick();
 		}
 	}
-
+	
+	@Override
+	public String[] menuCategory() {
+		return new String[] {
+				"Events"
+		};
+	}
+	
 }

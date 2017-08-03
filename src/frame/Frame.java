@@ -9,36 +9,30 @@ public class Frame {
 
 	public JFrame frame;
 	
+	private MainPanel mainPanel;
 	private JMenuBar menuBar;
 	private CustomMenu cmenu;
 	
-	private GeneratorFrame generator;
-
 	public Frame(String title, int width, int height) {
 		this.frame = new JFrame(title);
 
 		this.setBounds(width, height);
-		
+		this.setMainPanel();
 		this.setMenu();
 		
 		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		this.frame.setVisible(true);
 		
-		this.generator = new GeneratorFrame();
+		this.frame.setVisible(true);
 	}
 	
-	public void OpenGenerator() {
-		this.generator.setVisible(true);
-	}
-	
-	public void CloseGenerator() {
-		this.generator.setVisible(false);
-		this.generator.dispose();
-	}
-
 	private void setBounds(int width, int height) {
 		this.frame.setBounds(100, 100, width, height);
+	}
+	
+	private void setMainPanel() {
+		this.mainPanel = new MainPanel();
+		
+		this.frame.setContentPane(this.mainPanel);
 	}
 	
 	private void setMenu() {

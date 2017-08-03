@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 import frame.menu.MenuHandler;
 
-public class Menu0_Refresh extends MenuHandler {
+public class Menu1_SaveAs extends MenuHandler {
 
 	@Override
 	public String name() {
-		return "Refresh";
+		return "Save as";
 	}
 
 	@Override
@@ -20,5 +20,5 @@ public class Menu0_Refresh extends MenuHandler {
 	public void action() {
 		
 	}
-
+	
 }

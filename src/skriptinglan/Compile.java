@@ -60,7 +60,7 @@ public class Compile {
 								i++;
 								cs = list.get(i);
 								
-								hotkey.condition.add("key:" + cs);
+								hotkey.conditions.add("key:" + cs);
 							}
 							
 							// TODO: remove
@@ -83,7 +83,9 @@ public class Compile {
 				
 				if (list.size() > 1) {
 					for (int i = 1; i < list.size(); i++) {
-						command.parameters.add(list.get(i));
+						if (!list.get(i).isEmpty() && !list.get(i).equalsIgnoreCase(" ")) {
+							command.parameters.add(list.get(i));
+						}
 					}
 				}
 				
@@ -190,6 +192,7 @@ public class Compile {
 		return sorted;
 	}
 	
+	@SuppressWarnings("unused")
 	private static void printAll(ArrayList<String>[] sorted) {
 		for (ArrayList<String> list : sorted) {
 			for (int i = 1; i < list.size(); i++) {

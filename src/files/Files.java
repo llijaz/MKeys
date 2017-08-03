@@ -9,8 +9,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import hotkey.Execute;
-
 public class Files {
 	
 	private static BufferedWriter writer;
@@ -24,7 +22,7 @@ public class Files {
 	
 	public static ArrayList<String> paths;
 	
-	public static void Init() {
+	public static void init() {
 		configFile = new File(AppDir.getAppDir("MKeys"), "mkeys.config");
 		
 		try {

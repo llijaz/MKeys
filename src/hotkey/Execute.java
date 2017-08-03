@@ -43,14 +43,14 @@ public class Execute {
 		}
 	}
 
-	public static void Init() {
+	public static void init() {
 		try {
 			robot = new Robot();
 		} catch (AWTException e) {
 			e.printStackTrace();
 		}
 	}
-
+	
 	public static void MouseClickCenter() {
 		int x = HotkeyListener.mx;
 		int y = HotkeyListener.my;
@@ -74,6 +74,7 @@ public class Execute {
 	}
 
 	public static void MouseRelease(int mouseButton) {
+		System.out.println("< " + KeyEvent.getKeyText(mouseButton));
 		robot.mouseRelease(mouseButton);
 	}
 

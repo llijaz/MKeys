@@ -23,5 +23,21 @@ class KeyPress extends Task {
 			}
 		}
 	}
+	
+	@Override
+	public String[] menuCategory() {
+		return new String[] {
+				"Key", "Press", "Input"	
+		};
+	}
+	
+	@Override
+	public ArrayList<String[]> parameters() {
+		ArrayList<String[]> list = new ArrayList<>();
+		
+		list.add(new String[] {"KeyCode"});
+		
+		return list;
+	}
 
 }

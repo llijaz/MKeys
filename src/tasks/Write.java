@@ -24,5 +24,22 @@ class Write extends Task {
 		
 		Execute.Write(s);
 	}
+	
+	@Override
+	public String[] menuCategory() {
+		return new String[] {
+				"Input"
+		};
+	}
+	
+	@Override
+	public ArrayList<String[]> parameters() {
+		ArrayList<String[]> list = new ArrayList<>();
+		
+		list.add(new String[] {"#String message"});
+		// list.add(new String[] {});
+		
+		return list;
+	}
 
 }
