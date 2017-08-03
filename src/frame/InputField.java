@@ -53,12 +53,12 @@ public class InputField extends JFrame {
 
 	public String getInput() {
 		setVisible(true);
-		
+
 		setFocusableWindowState(true);
-		
+
 		toFront();
 		requestFocus();
-		
+
 		textField.grabFocus();
 		textField.requestFocus();
 
@@ -79,5 +79,5 @@ public class InputField extends JFrame {
 		}
 		return textField.getText();
 	}
-	
+
 }

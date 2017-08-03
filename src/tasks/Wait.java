@@ -16,7 +16,7 @@ class Wait extends Task {
 	public void execute(ArrayList<Object> parameters, boolean mode) {
 		if (parameters.size() > 0) {
 			String parameter = String.valueOf(parameters.get(0));
-			
+
 			if (parameter.equalsIgnoreCase("long")) {
 				WaitLong();
 			} else {
@@ -24,7 +24,7 @@ class Wait extends Task {
 					Wait(Integer.parseInt(parameter));
 				} catch (Exception e) {
 					// cant cast the parameter to an int
-					
+
 					Wait();
 				}
 			}
@@ -32,21 +32,21 @@ class Wait extends Task {
 			Wait();
 		}
 	}
-	
+
 	@Override
 	public String[] menuCategory() {
 		return new String[] {
 				"Events"
 		};
 	}
-	
+
 	@Override
 	public ArrayList<String[]> parameters() {
 		ArrayList<String[]> list = new ArrayList<>();
-		
+
 		list.add(new String[] {"Long", "#Integer milliseconds"});
 		// list.add(new String[] {});
-		
+
 		return list;
 	}
 

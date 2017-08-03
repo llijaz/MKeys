@@ -16,7 +16,7 @@ class Separator extends MenuHandler {
 
 	@Override
 	public void action() {
-		
+
 	}
-	
+
 }

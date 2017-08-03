@@ -18,7 +18,7 @@ public class Menu1_New extends MenuHandler {
 
 	@Override
 	public void action() {
-		
+
 	}
-	
+
 }

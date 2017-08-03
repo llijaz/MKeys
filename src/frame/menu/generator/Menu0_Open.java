@@ -3,7 +3,6 @@ package frame.menu.generator;
 import java.util.ArrayList;
 
 import frame.menu.MenuHandler;
-import main.Main;
 
 public class Menu0_Open extends MenuHandler {
 

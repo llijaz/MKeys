@@ -18,7 +18,7 @@ public class Menu0_AddHotkey extends MenuHandler {
 
 	@Override
 	public void action() {
-		
+
 	}
-	
+
 }

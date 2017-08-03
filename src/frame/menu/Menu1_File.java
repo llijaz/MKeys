@@ -2,10 +2,13 @@ package frame.menu;
 
 import java.util.ArrayList;
 
-import frame.menu.file.*;
+import frame.menu.file.Menu1_New;
+import frame.menu.file.Menu1_Open;
+import frame.menu.file.Menu1_Save;
+import frame.menu.file.Menu1_SaveAs;
 
 class Menu1_File extends MenuHandler {
-	
+
 	@Override
 	public String name() {
 		return "File";
@@ -24,7 +27,7 @@ class Menu1_File extends MenuHandler {
 
 	@Override
 	public void action() {
-		
+
 	}
 
 }

@@ -2,7 +2,9 @@ package frame.menu;
 
 import java.util.ArrayList;
 
-import frame.menu.file.*;
+import frame.menu.file.Menu0_AddHotkey;
+import frame.menu.file.Menu0_Exit;
+import frame.menu.file.Menu0_Refresh;
 
 class Menu0_File extends MenuHandler {
 
@@ -23,7 +25,7 @@ class Menu0_File extends MenuHandler {
 
 	@Override
 	public void action() {
-		
+
 	}
 
 }

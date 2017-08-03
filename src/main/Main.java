@@ -14,10 +14,10 @@ public class Main {
 	public static Frame frame;
 
 	public static LoadingFrame loading;
-	
+
 	public static boolean threading = true;
 	public static boolean clear = false;
-	
+
 	public static void main(String[] args) {
 		// TODO:
 		try {
@@ -46,30 +46,30 @@ public class Main {
 			}
 		}
 	}
-	
+
 	public static void executeAllHotkeys(String inputstring, boolean mode) {
 		if (!threading) {
 			return;
 		}
-		
+
 		Thread t = new Thread(new Runnable() {
 			@Override
 			public void run() {
 				for (String path : Files.paths) {
 					Lua.execute(path, inputstring, null, mode);
 				}
-				
+
 				if (clear) {
 					HotkeyListener.keys = new boolean[250];
 					clear = false;
 				}
-				
+
 				Main.threading = true;
 			}
 		});
-		
+
 		t.setPriority(1);
-		
+
 		t.start();
 	}
 

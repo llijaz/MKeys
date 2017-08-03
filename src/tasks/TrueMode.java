@@ -12,7 +12,7 @@ class TrueMode extends Task {
 	@Override
 	public void execute(ArrayList<Object> parameters, boolean mode) {
 		if (mode) {
-			
+
 		}
 	}
 

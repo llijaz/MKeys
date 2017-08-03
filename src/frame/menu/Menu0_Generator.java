@@ -15,16 +15,16 @@ class Menu0_Generator extends MenuHandler {
 	@Override
 	public ArrayList<MenuHandler> getItems() {
 		ArrayList<MenuHandler> list = new ArrayList<>();
-		
+
 		list.add(new Menu0_Open());
 		list.add(new Menu0_GetKeyCode());
-		
+
 		return list;
 	}
 
 	@Override
 	public void action() {
-		
+
 	}
 
 }

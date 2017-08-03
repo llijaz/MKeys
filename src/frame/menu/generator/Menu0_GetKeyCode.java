@@ -9,11 +9,11 @@ import main.HotkeyEvents;
 import main.HotkeyListener;
 
 public class Menu0_GetKeyCode extends MenuHandler {
-	
+
 	private boolean eventimpl;
-	
+
 	public int currentKeyCode;
-	
+
 	@Override
 	public String name() {
 		return "Get Keycode";
@@ -28,10 +28,10 @@ public class Menu0_GetKeyCode extends MenuHandler {
 	public void action() {
 		if (!this.eventimpl) {
 			this.eventimpl = true;
-			
+
 			HotkeyListener.GetKeyEvents(new HotkeyEvent());
 		}
-		
+
 		new Thread(new Runnable() {
 
 			@Override
@@ -49,7 +49,7 @@ public class Menu0_GetKeyCode extends MenuHandler {
 		}).start();
 
 	}
-	
+
 	class HotkeyEvent extends HotkeyEvents {
 
 		@Override
@@ -59,9 +59,9 @@ public class Menu0_GetKeyCode extends MenuHandler {
 
 		@Override
 		public void keyReleased(int keycode) {
-			
+
 		}
-		
+
 	}
 
 }

@@ -3,7 +3,6 @@ package frame;
 import java.awt.BorderLayout;
 import java.awt.Insets;
 
-import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 
@@ -18,7 +17,7 @@ public class MainPanel extends JPanel {
 
 		//tab = new ClosableTabbedPane();
 		//add(tab, BorderLayout.CENTER);
-		
+
 		//tab.add(new JButton());
 
 	}

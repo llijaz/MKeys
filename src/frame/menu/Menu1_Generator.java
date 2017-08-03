@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import frame.menu.generator.Menu1_Write;
 
 class Menu1_Generator extends MenuHandler {
-	
+
 	@Override
 	public String name() {
 		return "Generator";
@@ -20,7 +20,7 @@ class Menu1_Generator extends MenuHandler {
 
 	@Override
 	public void action() {
-		
+
 	}
 
 }

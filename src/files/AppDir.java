@@ -3,7 +3,7 @@ package files;
 import java.io.File;
 
 public class AppDir {
-	
+
 	private static File APP_DIR = null;
 
 	static File getAppDir(String appName) {
@@ -26,5 +26,5 @@ public class AppDir {
 
 		return APP_DIR;
 	}
-	
+
 }

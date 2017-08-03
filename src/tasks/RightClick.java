@@ -1,6 +1,6 @@
 package tasks;
 
-import static hotkey.Execute.*;
+import static hotkey.Execute.RightClick;
 
 import java.util.ArrayList;
 
@@ -15,12 +15,12 @@ class RightClick extends Task {
 	public void execute(ArrayList<Object> parameters, boolean mode) {
 		RightClick();
 	}
-	
+
 	@Override
 	public String[] menuCategory() {
 		return new String[] {
 				"Mouse", "Input"
 		};
 	}
-	
+
 }

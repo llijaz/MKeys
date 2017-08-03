@@ -26,7 +26,7 @@ public class Execute {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static void Wait(int i) {
 		try {
 			Thread.sleep(i);
@@ -50,7 +50,7 @@ public class Execute {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static void MouseClickCenter() {
 		int x = HotkeyListener.mx;
 		int y = HotkeyListener.my;
@@ -137,7 +137,7 @@ public class Execute {
 
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(new File(path)));
-			
+
 			String line;
 			while((line = reader.readLine()) != null) {
 				str += line + System.lineSeparator();
