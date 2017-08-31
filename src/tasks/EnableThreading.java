@@ -8,7 +8,7 @@ class EnableThreading extends Task {
 
 	@Override
 	public String name() {
-		return "DisableThreading";
+		return "EnableThreading";
 	}
 
 	@Override

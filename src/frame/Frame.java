@@ -9,7 +9,7 @@ public class Frame {
 
 	public JFrame frame;
 
-	private MainPanel mainPanel;
+	public MainPanel mainPanel;
 	private JMenuBar menuBar;
 	private CustomMenu cmenu;
 
@@ -26,7 +26,8 @@ public class Frame {
 	}
 
 	private void setBounds(int width, int height) {
-		this.frame.setBounds(100, 100, width, height);
+		this.frame.setSize(width, height);
+		this.frame.setLocationRelativeTo(null);
 	}
 
 	private void setMainPanel() {

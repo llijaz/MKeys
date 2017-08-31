@@ -76,8 +76,9 @@ F12 = 123
 
 local clock = os.clock
 function sleep(n)
-  local t0 = clock()
-  while clock() - t0 <= n do end
+	n = n / 1000
+    local t0 = clock()
+    while clock() - t0 <= n do end
 end
 
 function stringlistener(string)
@@ -107,19 +108,22 @@ function Click(a, b, c)
 end
 
 function WaitDef()
-	sleep(0.01)
+	-- sleep(0.01)
+	print ("Wait")
 end
 
 function Wait(t)
 	if t ~= nil then
-		sleep(t)
+		-- sleep(t)
+		print ("Wait " .. t)
 	else
 		WaitDef()
 	end
 end
 
 function WaitLong()
-	sleep(0.1)
+	-- sleep(0.1)
+	print ("Wait Long")
 end
 
 function Debug()

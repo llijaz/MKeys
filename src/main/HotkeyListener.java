@@ -38,8 +38,10 @@ public class HotkeyListener extends AbstractSwingInputAdapter implements NativeK
 		if (!Main.threading) {
 			return;
 		}
-
+		
 		int keyCode = getJavaKeyEvent(nativeEvent).getKeyCode();
+		
+		// System.out.println(KeyEvent.getKeyText(keyCode));
 
 		if (setInformationToGenerator && generator != null) {
 			generator.keyPressed(keyCode);

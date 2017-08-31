@@ -7,6 +7,7 @@ import frame.Frame;
 import frame.LoadingFrame;
 import hotkey.Execute;
 import hotkey.Hotkeys;
+import lua.Lua;
 import tasks.Task;
 
 public class Main {
@@ -45,6 +46,9 @@ public class Main {
 
 			}
 		}
+		
+		frame.mainPanel.initWelcomeTab();
+		frame.mainPanel.addTab(frame.mainPanel.welcome_tab);
 	}
 
 	public static void executeAllHotkeys(String inputstring, boolean mode) {
